@@ -29,12 +29,12 @@ let getBttnsOrder
 let getBill=document.getElementById('bill')
 let getSearchForm=document.getElementById('searchform')
 const firebaseConfig = {
-  apiKey: "AIzaSyAx7z2MAurEV3enbiCqL4-qvi-apefG0Ho",
-  authDomain: "store-694a5.firebaseapp.com",
-  projectId: "store-694a5",
-  storageBucket: "store-694a5.firebasestorage.app",
-  messagingSenderId: "315100360668",
-  appId: "1:315100360668:web:fa3d898bf6d02899302919"
+  apiKey: "AIzaSyDQTImG3sOg9tQLty6KrbfX7xYhVhmebNk",
+  authDomain: "foodpanda-functionality.firebaseapp.com",
+  projectId: "foodpanda-functionality",
+  storageBucket: "foodpanda-functionality.firebasestorage.app",
+  messagingSenderId: "154478506915",
+  appId: "1:154478506915:web:222d99374d12aafad66016"
 };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);

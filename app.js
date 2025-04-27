@@ -190,7 +190,6 @@ createUserWithEmailAndPassword(auth, getSemail.value, getSpassword.value)
       const docRef = await addDoc(collection(db, "cart"), {
         [user.uid]: "",
       });
-      console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -295,7 +294,6 @@ createUserWithEmailAndPassword(auth, getSemail.value, getSpassword.value)
       const docRef = await addDoc(collection(db, "cart"), {
         [user.uid]: "",
       });
-      console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -802,7 +800,6 @@ querySnap.forEach((doc) => {
     tempVar=doc.id
     if(doc.data()[id]){
       getCart.innerHTML=JSON.parse(doc.data()[id])
-      console.log(getCart.innerHTML);
       if(getCart.innerHTML!=''){
         getPill.style.display='inline'
       }
@@ -847,8 +844,6 @@ async function removeFromCart(e){
   e.parentNode.childNodes[1].innerText=Number(e.parentNode.childNodes[1].innerText)-1
   if(Number(e.parentNode.childNodes[1].innerText)==0){
     Array.from(getBttnsOrder).forEach(cv=>{
-      console.log(getBttnsOrder);
-      
       if(cv.value==e.value){
         cv.disabled=false
     cv.style.opacity=1  

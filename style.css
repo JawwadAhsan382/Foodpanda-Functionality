@@ -1,0 +1,256 @@
+#indexbody{
+   background-image: linear-gradient(to top right,#0BCDDF,#F600FE);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#adminbody,#customerbody{
+    background-image: linear-gradient(to bottom left,#0BCDDF,#F600FE);
+    width: 100%;
+    min-height: 100vh;
+}
+#elementP{
+    margin-left: 5px;
+    margin-bottom: 50px;
+}
+#element,.cursor{
+    font-weight: bold;
+    font-size: 30px;
+    color: whitesmoke;
+}
+#elemenP{
+    margin-left: 5px;
+    margin-bottom: 50px;
+}
+#elemen,.cursor{
+    font-weight: bold;
+    font-size: 30px;
+    color: whitesmoke;
+}
+#sformouter{
+    width: 300px;
+    height: 200px;
+    border-radius: 20px;
+    background-color: whitesmoke;
+}
+#sformouter>p{
+    width: 100%;
+    text-align: center;
+}
+#sform{
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-evenly;
+}
+#sform>input{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    width: 90%;
+}
+#sform>input:focus{
+    border: 1px solid black;
+    border-radius: 3px;
+}
+#sform>input:hover{
+    border: 1px solid black;
+    border-radius: 3px;
+}
+#sform input{
+    background-color: transparent;
+}
+#sform input:focus::placeholder{
+    color: black;
+}
+#sform>div{
+    padding-right: 2px;
+    border-bottom: 1px solid black;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+#sform>div:focus{
+    border: 1px solid black;
+    border-radius: 3px;
+}
+#sform>div:hover{
+    border: 1px solid black;
+    border-radius: 3px;
+}
+#sform>div>#spassword{
+    border: none;
+    outline: none;
+    width: 80%;
+}
+#sform>button{
+    width: 30%;
+    border-radius: 5px;
+    color: aliceblue;
+    border: none;
+    background-image: linear-gradient(to bottom left,#0BCDDF,#F600FE);
+}
+#sform>button:active{
+    color: black;
+    background-image: linear-gradient(to top right,#0BCDDF,#F600FE);
+}
+#sform>button:hover{
+    color: black;
+    background-image: linear-gradient(to top right,#0BCDDF,#F600FE);
+}
+.eyes{
+    font-size: smaller;
+}
+.sclose{
+    display: none;
+}
+a{
+    text-decoration: none;
+}
+.temp{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to top right,#0BCDDF,#F600FE);
+}
+#lformouter{
+    width: 300px;
+    height: 150px;
+    border-radius: 20px;
+    background-color: whitesmoke;
+}
+#lformouter>p{
+    width: 100%;
+    text-align: center;
+}
+#lform{
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-evenly;
+}
+#lform>input{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    width: 90%;
+}
+#lform>input:focus{
+    border: 1px solid black;
+    border-radius: 3px;
+}
+#lform>input:hover{
+    border: 1px solid black;
+    border-radius: 3px;
+}
+#lform input{
+    background-color: transparent;
+}
+#lform input:focus::placeholder{
+    color: black;
+}
+#lform>div{
+    padding-right: 2px;
+    border-bottom: 1px solid black;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+#lform>div:focus{
+    border: 1px solid black;
+    border-radius: 3px;
+}
+#lform>div:hover{
+    border: 1px solid black;
+    border-radius: 3px;
+}
+#lform>div>#lpassword{
+    border: none;
+    outline: none;
+    width: 80%;
+}
+.lclose{
+    display: none;
+}
+#lform>button{
+    width: 30%;
+    border-radius: 5px;
+    color: aliceblue;
+    border: none;
+    background-image: linear-gradient(to bottom left,#0BCDDF,#F600FE);
+}
+#lform>button:active{
+    color: black;
+    background-image: linear-gradient(to top right,#0BCDDF,#F600FE);
+}
+#lform>button:hover{
+    color: black;
+    background-image: linear-gradient(to top right,#0BCDDF,#F600FE);
+}
+a{
+    text-decoration: none;
+}
+.card-btn{
+    width: 30%;
+    border-radius: 5px;
+    color: aliceblue;
+    border: none;
+    padding: 5px;
+    background-image: linear-gradient(to bottom left,#0BCDDF,#F600FE);
+}
+.card-btn:active{
+    color: black;
+    background-image: linear-gradient(to top right,#0BCDDF,#F600FE);
+}
+.card-btn:hover{
+    color: black;
+    background-image: linear-gradient(to top right,#0BCDDF,#F600FE);
+}
+#editbtn,#addbtn,#lout{
+    width: 100px;
+}
+.navbar-brand{
+    font-weight: bolder;
+    font-size: 30px;
+    color: aliceblue !important;
+}
+.navbar-brand:hover{
+    color: #F600FE !important;
+    transition: 1s;
+}
+.filter,.fa-xmark{
+    font-weight: bolder;
+    font-size: 30px;
+    color: aliceblue !important;
+}
+#filterresultpanel{
+    display: none;
+    justify-content: space-between;
+}
+.spin{
+    width: 100px;
+    height: 100px;
+    border-width: 10px;
+}
+@media screen and (max-width:320px){
+    #sformouter{
+        width: 250px;
+        height: 200px;
+        border-radius: 20px;
+        background-color: whitesmoke;
+    }
+    #lformouter{
+        width: 250px;
+        height: 150px;
+        border-radius: 20px;
+        background-color: whitesmoke;
+    }
+}

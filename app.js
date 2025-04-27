@@ -802,7 +802,10 @@ querySnap.forEach((doc) => {
     tempVar=doc.id
     if(doc.data()[id]){
       getCart.innerHTML=JSON.parse(doc.data()[id])
+      console.log(getCart.innerHTML);
+      if(getCart.innerHTML!=''){
         getPill.style.display='inline'
+      }
         Array.from(getCart.childNodes).forEach(cv=>{
           getPill.firstChild.textContent=Number(getPill.firstChild.textContent)+Number(cv.lastChild.lastChild.childNodes[1].innerText)
           getBill.innerText=Number(getBill.innerText)+(Number(cv.lastChild.lastChild.childNodes[1].innerText)*Number(cv.lastChild.childNodes[1].lastChild.innerText))

@@ -1,6 +1,17 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import { getFirestore ,collection, addDoc,Timestamp, getDocs, doc, deleteDoc,updateDoc, deleteField } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 import { getAuth,createUserWithEmailAndPassword , signInWithEmailAndPassword ,onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyDQTImG3sOg9tQLty6KrbfX7xYhVhmebNk",
+  authDomain: "foodpanda-functionality.firebaseapp.com",
+  projectId: "foodpanda-functionality",
+  storageBucket: "foodpanda-functionality.firebasestorage.app",
+  messagingSenderId: "154478506915",
+  appId: "1:154478506915:web:222d99374d12aafad66016"
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 let getCustomerBody=document.getElementById('customerbody')
 let getAdminBody=document.getElementById('adminbody')
 let getIndexBody=document.getElementById('indexbody')
@@ -28,17 +39,6 @@ let getAdminContainer=document.getElementById('admincontainer')
 let getBttnsOrder
 let getBill=document.getElementById('bill')
 let getSearchForm=document.getElementById('searchform')
-const firebaseConfig = {
-  apiKey: "AIzaSyDQTImG3sOg9tQLty6KrbfX7xYhVhmebNk",
-  authDomain: "foodpanda-functionality.firebaseapp.com",
-  projectId: "foodpanda-functionality",
-  storageBucket: "foodpanda-functionality.firebasestorage.app",
-  messagingSenderId: "154478506915",
-  appId: "1:154478506915:web:222d99374d12aafad66016"
-};
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
 localStorage.setItem('a',6)
 onAuthStateChanged(auth,async (user) => {
   if(localStorage.getItem('a')){
@@ -132,6 +132,7 @@ else if(Ct>At){
   }
   }
 });
+//Signup
 if(getIndexBody){
   getSopen.addEventListener('click',()=>{
     getSclose.style.display='block'
@@ -364,6 +365,8 @@ signInWithEmailAndPassword(auth, getSemail.value, getSpassword.value)
   }); //then end
 })
 }
+//Signup
+//Login
 if(getLoginBody){
 getLopen.addEventListener('click',()=>{
   getLclose.style.display='block'
@@ -502,6 +505,8 @@ Swal.fire({
 });
 })
 }
+//Login
+//Admin
 if(getAdminBody){
 function base64ToFile(base64Url, filename) {
   const arr = base64Url.split(',');
@@ -698,6 +703,8 @@ if(e.srcElement.value==doc.id){
 }
 }
 }
+//Admin
+//Customer
 if(getCustomerBody){
 let getCart=document.getElementById('cart')
 if(Number(getPill.firstChild.textContent)==0){

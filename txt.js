@@ -17,6 +17,7 @@ let getLopen=document.querySelector('.lopen')
 let getCustomerContainer=document.getElementById('customercontainer')
 let customerRead
 let id
+let tempVar
 let readData
 let getPill=document.getElementById('pill')
 let getLclose=document.querySelector('.lclose')
@@ -28,12 +29,12 @@ let getBttnsOrder
 let getBill=document.getElementById('bill')
 let getSearchForm=document.getElementById('searchform')
 const firebaseConfig = {
-  apiKey: "AIzaSyAx7z2MAurEV3enbiCqL4-qvi-apefG0Ho",
-  authDomain: "store-694a5.firebaseapp.com",
-  projectId: "store-694a5",
-  storageBucket: "store-694a5.firebasestorage.app",
-  messagingSenderId: "315100360668",
-  appId: "1:315100360668:web:fa3d898bf6d02899302919"
+  apiKey: "AIzaSyDQTImG3sOg9tQLty6KrbfX7xYhVhmebNk",
+  authDomain: "foodpanda-functionality.firebaseapp.com",
+  projectId: "foodpanda-functionality",
+  storageBucket: "foodpanda-functionality.firebasestorage.app",
+  messagingSenderId: "154478506915",
+  appId: "1:154478506915:web:222d99374d12aafad66016"
 };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -79,7 +80,6 @@ try {
   const docRef = await addDoc(collection(db, "customerPanel"), {
     cd:`${user.uid}`
   });
-  // console.log("Document written with ID: ", docRef.id);
 } catch (e) {
   console.error("Error adding document: ", e);
 }
@@ -101,7 +101,6 @@ if(At>Ct){
       const docRef = await addDoc(collection(db, "customerPanel"), {
         cd:`${user.uid}`
       });
-      // console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -117,8 +116,9 @@ else if(Ct>At){
 }
 }
     }
-    const uid = user.uid;
-    id=uid
+    // const uid = user.uid;
+    // id=uid
+    id=user.uid
     if(location.pathname.endsWith('/adminDash.html')){
       readData()
     }
@@ -186,25 +186,18 @@ createUserWithEmailAndPassword(auth, getSemail.value, getSpassword.value)
     allowOutsideClick:false,
     allowEscapeKey:false,
   }).then(async ()=>{
-    // const { value: rname } = await Swal.fire({
-    //   title: "Restaurant Name",
-    //   input: "text",
-    //   inputPlaceholder: "Enter your restaurant name"
-    // });
-    // if (rname) {
-    //   Swal.fire({
-    //     title: "Restaurant added",
-    //     icon: "success",
-    //     draggable: false
-    //   });
-    // }
+    try {
+      const docRef = await addDoc(collection(db, "cart"), {
+        [user.uid]: "",
+      });
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
     const docRef = await addDoc(collection(db, "admin"), {
       name:getSname.value,
-      // restaurant:rname,
       time:Timestamp.now(),
       email: getSemail.value.toLowerCase(),
     });
-    // console.log("Document written with ID: ", docRef.id);
     getSname.value=''
     getSemail.value=''
     getSpassword.value=''
@@ -236,28 +229,14 @@ signInWithEmailAndPassword(auth, getSemail.value, getSpassword.value)
     allowOutsideClick:false,
     allowEscapeKey:false,
   }).then(async ()=>{
-    const { value: rname } = await Swal.fire({
-      title: "Restaurant Name",
-      input: "text",
-      inputPlaceholder: "Enter your restaurant name"
-    });
-    if (rname) {
-      Swal.fire({
-        title: "Restaurant added",
-        icon: "success",
-        draggable: false
-      });
-    }
     const docRef = await addDoc(collection(db, "admin"), {
       name:getSname.value,
       time:Timestamp.now(),
-      restaurant:rname,
       email: getSemail.value.toLowerCase(),
     });
     getSname.value=''
     getSemail.value=''
     getSpassword.value=''
-    // console.log("Document written with ID: ", docRef.id);
     signOut(auth).then(()=>{        
       location.href='./login.html'
     }).catch(()=>{
@@ -266,8 +245,6 @@ signInWithEmailAndPassword(auth, getSemail.value, getSpassword.value)
   })
 })
 .catch((error) => {
-  // const errorCode = error.code;
-  // const errorMessage = error.message;
   Swal.fire({
     icon: "error",
     title: "Oops...",
@@ -313,6 +290,13 @@ createUserWithEmailAndPassword(auth, getSemail.value, getSpassword.value)
     allowOutsideClick:false,
     allowEscapeKey:false,
   }).then(async ()=>{
+    try {
+      const docRef = await addDoc(collection(db, "cart"), {
+        [user.uid]: "",
+      });
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
     const docRef = await addDoc(collection(db, "customer"), {
       email: getSemail.value.toLowerCase(),
       name:getSname.value,
@@ -321,7 +305,6 @@ createUserWithEmailAndPassword(auth, getSemail.value, getSpassword.value)
     getSname.value=''
     getSemail.value=''
     getSpassword.value=''
-    // console.log("Document written with ID: ", docRef.id);
     signOut(auth).then(()=>{
       location.href='./login.html'
     }).catch(()=>{
@@ -358,7 +341,6 @@ signInWithEmailAndPassword(auth, getSemail.value, getSpassword.value)
       getSname.value=''
       getSemail.value=''
       getSpassword.value=''
-      // console.log("Document written with ID: ", docRef.id);
       signOut(auth).then(()=>{        
         location.href='./login.html'
       }).catch(()=>{
@@ -367,8 +349,6 @@ signInWithEmailAndPassword(auth, getSemail.value, getSpassword.value)
   })
 })
 .catch((error) => {
-  // const errorCode = error.code;
-  // const errorMessage = error.message;
   Swal.fire({
     icon: "error",
     title: "Oops...",
@@ -601,7 +581,6 @@ getItemForm.addEventListener('submit',()=>{
         category:sel.innerHTML,
         url:reader.result,
       });
-      // console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -684,9 +663,6 @@ if(e.srcElement.value==doc.id){
   const file = base64ToFile(doc.data().url, `${doc.data().name}.PNG`);
   const dataTransfer = new DataTransfer();
   dataTransfer.items.add(file);
-  
-  // Set it to the input
-  // const input = document.querySelector('input[type="file"]');
   getEditImage.files = dataTransfer.files;
 }
 });
@@ -796,6 +772,16 @@ getLout.addEventListener('click',()=>{
     }
   });
 })
+{/* <div class="card my-2" style="width: 16rem;">
+  <img src="${doc.data().url}" height="250px" class="card-img-top" alt="..." style="object-fit:cover;">
+  <div class="card-body">
+    <h5 class="card-title">${doc.data().name}</h5>
+    <div class="card-text">Rs <span>${doc.data().price}</span></div>
+    <div class="card-text">${doc.data().category}</div>
+    <div class="card-text">${doc.data().description}</div>
+    <div class="card-text mt-2 d-flex justify-content-evenly"><button value='${n}' class="card-btn bttnsOrder" onclick="addToCart(this)">Order</button></div>
+  </div>
+</div> */}
 customerRead=async function(){
   getCustomerContainer.innerHTML=''
   let n=0
@@ -808,11 +794,37 @@ n++
 })
 getBttnsOrder=document.querySelectorAll('.bttnsOrder')
 });
+const querySnap = await getDocs(collection(db, "cart"));
+querySnap.forEach((doc) => {
+  if(doc.data()[id]!=undefined){
+    tempVar=doc.id
+    if(doc.data()[id]){
+      getCart.innerHTML=JSON.parse(doc.data()[id])
+      if(getCart.innerHTML!=''){
+        getPill.style.display='inline'
+      }
+        Array.from(getCart.childNodes).forEach(cv=>{
+          getPill.firstChild.textContent=Number(getPill.firstChild.textContent)+Number(cv.lastChild.lastChild.childNodes[1].innerText)
+          getBill.innerText=Number(getBill.innerText)+(Number(cv.lastChild.lastChild.childNodes[1].innerText)*Number(cv.lastChild.childNodes[1].lastChild.innerText))
+          Array.from(getCustomerContainer.childNodes).forEach(curVal=>{
+            if(cv.lastChild.lastChild.childNodes[0].value==curVal.lastChild.lastChild.lastChild.value){
+              curVal.lastChild.lastChild.lastChild.disabled=true
+              curVal.lastChild.lastChild.lastChild.style.opacity=0.5
+            }
+          })
+        })
+    }
+  }
+});
 }
-function addToCart(e){
+async function addToCart(e){
   getPill.style.display='inline'
   getPill.firstChild.textContent=Number(getPill.firstChild.textContent)+1
   let a=e.parentNode.parentNode.parentNode.cloneNode(true)
+  let inp=document.createElement('div')
+  inp.innerText=1
+  inp.setAttribute('style','width:70px; text-align:center;')
+  a.lastChild.lastChild.appendChild(inp)
   a.lastChild.lastChild.appendChild(a.lastChild.lastChild.firstChild.cloneNode(true))
   a.lastChild.lastChild.firstChild.innerHTML='<b><i class="fa-solid fa-plus"></i></b>'
   a.lastChild.lastChild.firstChild.setAttribute('onclick','plus(this)')
@@ -822,38 +834,49 @@ function addToCart(e){
   e.style.opacity=0.5
   getCart.innerHTML+=`<div class="card my-2" style="width: 16rem;">${a.innerHTML}</div>`
   getBill.innerText=Number(getBill.innerText)+Number(a.firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling.innerText)
+const cityRef = doc(db, 'cart', tempVar);
+await updateDoc(cityRef, {
+  [id]: JSON.stringify(getCart.innerHTML)
+});
 }
 window.addToCart=addToCart
-function removeFromCart(e){
-  let x=0
-  let flag=true
-  Array.from(getCart.childNodes).forEach(cv=>{
-    if(cv.lastChild.lastChild.lastChild.value==e.value){
-      x++
-    }
-  })
-  if(x>=2){
-    flag=false
+async function removeFromCart(e){
+  e.parentNode.childNodes[1].innerText=Number(e.parentNode.childNodes[1].innerText)-1
+  if(Number(e.parentNode.childNodes[1].innerText)==0){
+    Array.from(getBttnsOrder).forEach(cv=>{
+      if(cv.value==e.value){
+        cv.disabled=false
+    cv.style.opacity=1  
+      }
+    })
+    e.parentNode.parentNode.parentNode.remove()
   }
-  Array.from(getBttnsOrder).forEach(cv=>{
-    if(cv.value==e.value && flag){
-      cv.disabled=false
-  cv.style.opacity=1  
-    }
-  })
   getBill.innerText=Number(getBill.innerText)-Number(e.parentNode.parentNode.firstChild.nextSibling.firstChild.nextSibling.innerText)
-  e.parentNode.parentNode.parentNode.remove()
   getPill.firstChild.textContent=Number(getPill.firstChild.textContent)-1
   if(Number(getPill.firstChild.textContent)==0){
     getPill.style.display='none'
   }
+  const cityRef = doc(db, 'cart', tempVar);
+  if(getCart.innerHTML==''){
+    await updateDoc(cityRef, {
+      [id]: getCart.innerHTML
+    });
+  }else{
+await updateDoc(cityRef, {
+  [id]: JSON.stringify(getCart.innerHTML)
+});
+  }
 }
 window.removeFromCart=removeFromCart
-function plus(e){
+async function plus(e){
   getPill.firstChild.textContent=Number(getPill.firstChild.textContent)+1
-  let a=e.parentNode.parentNode.parentNode.cloneNode(true)
-  getCart.innerHTML+=`<div class="card my-2" style="width: 16rem;">${a.innerHTML}</div>`
+  let a=e.parentNode.parentNode.parentNode
+  a.lastChild.lastChild.childNodes[1].innerText=Number(a.lastChild.lastChild.childNodes[1].innerText)+1
   getBill.innerText=Number(getBill.innerText)+Number(a.firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling.innerText)
+  const cityRef = doc(db, 'cart', tempVar);
+await updateDoc(cityRef, {
+  [id]: JSON.stringify(getCart.innerHTML)
+});
 }
 window.plus=plus
 }

@@ -857,17 +857,6 @@ async function removeFromCart(e){
     getPill.style.display='none'
   }
   const cityRef = doc(db, 'cart', tempVar);
-await updateDoc(cityRef, {
-  [id]: JSON.stringify(getCart.innerHTML)
-});
-}
-window.removeFromCart=removeFromCart
-async function plus(e){
-  getPill.firstChild.textContent=Number(getPill.firstChild.textContent)+1
-  let a=e.parentNode.parentNode.parentNode
-  a.lastChild.lastChild.childNodes[1].innerText=Number(a.lastChild.lastChild.childNodes[1].innerText)+1
-  getBill.innerText=Number(getBill.innerText)+Number(a.firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling.innerText)
-  const cityRef = doc(db, 'cart', tempVar);
   if(getCart.innerHTML==''){
     await updateDoc(cityRef, {
       [id]: getCart.innerHTML
@@ -877,6 +866,17 @@ await updateDoc(cityRef, {
   [id]: JSON.stringify(getCart.innerHTML)
 });
   }
+}
+window.removeFromCart=removeFromCart
+async function plus(e){
+  getPill.firstChild.textContent=Number(getPill.firstChild.textContent)+1
+  let a=e.parentNode.parentNode.parentNode
+  a.lastChild.lastChild.childNodes[1].innerText=Number(a.lastChild.lastChild.childNodes[1].innerText)+1
+  getBill.innerText=Number(getBill.innerText)+Number(a.firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling.innerText)
+  const cityRef = doc(db, 'cart', tempVar);
+await updateDoc(cityRef, {
+  [id]: JSON.stringify(getCart.innerHTML)
+});
 }
 window.plus=plus
 }
